@@ -16,9 +16,9 @@ import java.math.BigDecimal;
 @TableName(value = "goods")
 public class Goods {
     @TableField("id")
-    Integer id ;
+    private Integer id ;
     @TableField("name")
-    String name ;
+    private String name ;
     @TableField("price")
-    BigDecimal price;
+    private BigDecimal price;
 }

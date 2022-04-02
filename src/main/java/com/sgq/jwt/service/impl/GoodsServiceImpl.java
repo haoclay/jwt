@@ -1,5 +1,6 @@
 package com.sgq.jwt.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sgq.jwt.dao.GoodsMapper;
 import com.sgq.jwt.pojo.Goods;
@@ -21,8 +22,17 @@ public class GoodsServiceImpl implements IGoodsService {
 
     @Override
     public List<Goods> findAll() {
-        QueryWrapper queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("1", 1);
-        return mapper.selectList(queryWrapper);
+
+        QueryWrapper<Goods> queryWrapper = new QueryWrapper();
+        queryWrapper.eq("id", 1);
+        System.out.println(mapper.selectList(queryWrapper));
+
+        LambdaQueryWrapper<Goods> lambdaQueryWrapper = new LambdaQueryWrapper();
+        lambdaQueryWrapper.lt(Goods::getId,10);
+        List<Goods> goodsList = mapper.selectList(lambdaQueryWrapper);
+        System.out.println(goodsList);
+        return goodsList;
     }
+
+
 }
