@@ -23,6 +23,9 @@ public class JwtUtil {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE,7);
 
+        Calendar c =  Calendar.getInstance();
+        c.add(Calendar.MINUTE,1);
+
         HashMap<String, Object> headMap = new HashMap<>();
         JWTCreator.Builder builder = JWT.create();
         builder.withHeader(headMap);

@@ -5,6 +5,7 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sgq.jwt.utils.JwtUtil;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import java.util.Map;
  * @Author : SGQ
  * @create 2021/6/9 12:14
  */
+@Component
 public class JwtInterceptors implements HandlerInterceptor {
 
     @Override

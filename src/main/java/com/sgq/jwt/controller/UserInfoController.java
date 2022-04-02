@@ -1,5 +1,6 @@
 package com.sgq.jwt.controller;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.sgq.jwt.pojo.UserInfo;
 import com.sgq.jwt.service.IUserInfoService;
 import com.sgq.jwt.utils.JwtUtil;
@@ -7,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,11 +56,14 @@ public class UserInfoController {
     }
 
     @PostMapping("/user/findGoods")
-    public Map<String,Object>  findGoods(){
+    public Map<String,Object>  findGoods(HttpServletRequest request){
         System.out.println("做业务...");
         Map resultMap = new HashMap();
         resultMap.put("state",true);
         resultMap.put("msg","处理成功");
+        DecodedJWT token = JwtUtil.verify(request.getHeader("token"));
+        System.out.println(token.getClaim("nickname").asString());
+        System.out.println(token.getClaim("id").asInt());
         return resultMap;
     }
 }
